@@ -63,18 +63,24 @@ function AdminDashboard() {
     });
   }, [supabase]);
 
-  async function authHeader() {
-    const { data } = await supabase.auth.getSession();
-    const token = data.session?.access_token;
-    return token ? { Authorization: `Bearer ${token}` } : {};
-  }
+  async function authHeader(): Promise<Record<string, string>> {
+  const { data } = await supabase.auth.getSession();
+  const token = data.session?.access_token;
 
+  if (!token) return {};
+
+  return {
+    Authorization: `Bearer ${token}`
+  };
+}
   async function toggleOutOfStock(product: ToteProduct) {
     setMessage('Saving...');
-    const headers = {
-      'Content-Type': 'application/json',
-      ...(await authHeader())
-    };
+    const auth = await authHeader();
+
+const headers: HeadersInit = {
+  'Content-Type': 'application/json',
+  ...auth
+};
 
     const res = await fetch('/api/admin/products', {
       method: 'PATCH',
