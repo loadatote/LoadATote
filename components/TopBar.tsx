@@ -22,7 +22,7 @@ export function TopBar() {
       const isOwner = ownerEmailsFromEnv().includes(email);
       setOwner(isOwner);
 
-      if (isOwner && (pathname === '/' || pathname === '/login')) {
+      if (isOwner && (pathname === '/' || pathname === '/login' || pathname === '/products')) {
         router.replace('/owner');
       }
     });
@@ -32,7 +32,7 @@ export function TopBar() {
       const isOwner = ownerEmailsFromEnv().includes(email);
       setOwner(isOwner);
 
-      if (isOwner && (pathname === '/' || pathname === '/login')) {
+      if (isOwner && (pathname === '/' || pathname === '/login' || pathname === '/products')) {
         router.replace('/owner');
       }
     });
@@ -46,7 +46,7 @@ export function TopBar() {
     <header className="sticky top-0 z-40 border-b border-white/10 bg-black/80 backdrop-blur">
       <div className="mx-auto max-w-7xl px-4">
         <div className="flex items-center justify-between gap-4 py-3">
-          <Link href="/" className="flex items-center gap-3">
+          <Link href="/products" className="flex items-center gap-3">
             <Image src="/logo.png" alt="Load A Tote logo" width={48} height={48} className="h-12 w-12 rounded-full ring-2 ring-amber-400/70" />
             <div>
               <div className="text-sm font-semibold text-white">Load A Tote</div>
@@ -55,10 +55,17 @@ export function TopBar() {
           </Link>
 
           <nav className="flex items-center gap-3 text-sm text-white/90">
-            <Link href="/" className="rounded-full px-3 py-2 hover:bg-white/10">Catalog</Link>
-            <Link href="/cart" className="rounded-full px-3 py-2 hover:bg-white/10">Cart ({count})</Link>
+            <Link href="/products" className="rounded-full px-4 py-3 text-base font-semibold hover:bg-white/10">
+              Products
+            </Link>
+            <Link href="/cart" className="rounded-full px-4 py-3 text-base font-semibold hover:bg-white/10">
+              Cart ({count})
+            </Link>
+            <Link href="/login" className="rounded-full px-4 py-3 text-base font-semibold hover:bg-white/10">
+              Login
+            </Link>
             {owner ? (
-              <Link href="/owner" className="rounded-full bg-amber-400 px-4 py-2 font-semibold text-black">
+              <Link href="/owner" className="rounded-full bg-amber-400 px-5 py-3 text-base font-semibold text-black">
                 Owner
               </Link>
             ) : null}

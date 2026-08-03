@@ -21,29 +21,3 @@ export type ToteProduct = {
 };
 
 export type OrderStatus = 'new' | 'processing' | 'ready' | 'completed' | 'cancelled';
-
-export type OrderRecord = {
-  id: string;
-  customer_name: string;
-  email: string;
-  phone: string | null;
-  notify_method: string | null;
-  billing_name: string;
-  billing_address: string;
-  billing_city: string;
-  billing_state: string;
-  billing_zip: string;
-  delivery_instructions: string | null;
-  rental_window: PricingWindow;
-  status: OrderStatus;
-  total_amount: number;
-  created_at: string;
-};
-
-export type NotificationRecord = {
-  id: string;
-  order_id: string;
-  channel: 'owner' | 'customer';
-  message: string;
-  sent_at: string;
-};
