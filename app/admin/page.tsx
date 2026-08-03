@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { OwnerGuard } from '@/components/OwnerGuard';
 import { getSupabaseBrowserClient } from '@/lib/supabaseBrowser';
-import { OrderRecord, ToteProduct } from '@/lib/types';
+import { ToteProduct } from '@/lib/types';
 import { formatMoney, products } from '@/lib/mockProducts';
 
 type ProductRow = {
