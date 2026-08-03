@@ -5,6 +5,7 @@ create table if not exists public.products (
   description text not null,
   image text not null,
   daily numeric not null default 0,
+  three_day numeric not null default 0,
   seven_day numeric not null default 0,
   fourteen_day numeric not null default 0,
   thirty_day numeric not null default 0,
@@ -60,12 +61,12 @@ create policy "public read order items"
 on public.order_items for select
 using (true);
 
-insert into public.products (id, name, size, description, image, daily, seven_day, fourteen_day, thirty_day, sixty_day, is_out_of_stock)
+insert into public.products (id, name, size, description, image, daily, three_day, seven_day, fourteen_day, thirty_day, sixty_day, is_out_of_stock)
 values
-('12gal', 'HDX Tough Storage Tote', '12 GAL', 'Small tote for compact loads and accessories.', '/12gal.svg', 3, 9, 14, 20, 28, false),
-('17gal', 'HDX Tough Storage Tote', '17 GAL', 'Great for kitchen and office packing.', '/17gal.svg', 4, 10, 16, 22, 30, false),
-('27gal', 'HDX Tough Storage Tote', '27 GAL', 'A popular mid-size moving tote.', '/27gal.svg', 5, 12, 18, 26, 34, false),
-('35gal', 'HDX Tough Storage Tote', '35 GAL', 'Extra room for bedding and bulky items.', '/35gal.svg', 6, 14, 20, 28, 38, false),
-('45gal', 'HDX Tough Storage Tote', '45 GAL', 'Large tote for heavy household loads.', '/45gal.svg', 7, 16, 24, 34, 46, false),
-('65gal', 'HDX Tough Storage Tote', '65 GAL', 'Largest tote for long or oversized rentals.', '/65gal.svg', 8, 18, 26, 36, 48, false)
+('12gal', 'HDX Tough Storage Tote', '12 GAL', 'Small tote for compact loads and accessories.', '/12gal.svg', 3, 7, 9, 14, 20, 28, false),
+('17gal', 'HDX Tough Storage Tote', '17 GAL', 'Great for kitchen and office packing.', '/17gal.svg', 4, 8, 10, 16, 22, 30, false),
+('27gal', 'HDX Tough Storage Tote', '27 GAL', 'A popular mid-size moving tote.', '/27gal.svg', 5, 10, 12, 18, 26, 34, false),
+('35gal', 'HDX Tough Storage Tote', '35 GAL', 'Extra room for bedding and bulky items.', '/35gal.svg', 6, 12, 14, 20, 28, 38, false),
+('45gal', 'HDX Tough Storage Tote', '45 GAL', 'Large tote for heavy household loads.', '/45gal.svg', 7, 14, 16, 24, 34, 46, false),
+('65gal', 'HDX Tough Storage Tote', '65 GAL', 'Largest tote for long or oversized rentals.', '/65gal.svg', 8, 16, 18, 26, 36, 48, false)
 on conflict (id) do nothing;

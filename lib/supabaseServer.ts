@@ -1,5 +1,4 @@
 import { createClient } from '@supabase/supabase-js';
-import { ownerEmailsFromEnv } from './owner';
 
 export function getSupabaseServerClient() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -17,6 +16,5 @@ export function getSupabaseServerClient() {
   });
 }
 
-// Backward-compatible aliases so older imports keep working.
 export const getServiceClient = getSupabaseServerClient;
-export const ownerEmails = ownerEmailsFromEnv;
+export { ownerEmailsFromEnv as ownerEmails } from './owner';
