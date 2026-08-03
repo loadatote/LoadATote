@@ -17,5 +17,6 @@ export function getSupabaseServerClient() {
   });
 }
 
+// Backward-compatible aliases so older imports keep working.
 export const getServiceClient = getSupabaseServerClient;
 export const ownerEmails = ownerEmailsFromEnv;
