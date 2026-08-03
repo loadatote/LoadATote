@@ -71,7 +71,10 @@ export const pricingLabel: Record<string, string> = {
   '60d': '2 Months'
 };
 
-export function getPriceForWindow(product: ToteProduct, window: keyof typeof pricingLabel) {
+export function getPriceForWindow(
+  product: ToteProduct,
+  window: keyof typeof pricingLabel
+): number {
   switch (window) {
     case '1d':
       return product.daily;
@@ -85,6 +88,8 @@ export function getPriceForWindow(product: ToteProduct, window: keyof typeof pri
       return product.thirtyDay;
     case '60d':
       return product.sixtyDay;
+    default:
+      return product.sevenDay;
   }
 }
 
