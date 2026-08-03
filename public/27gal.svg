@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600" viewBox="0 0 900 600">
+  <defs>
+    <linearGradient id="lid" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffd21f"/>
+      <stop offset="100%" stop-color="#d4a400"/>
+    </linearGradient>
+    <linearGradient id="body" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#262626"/>
+      <stop offset="100%" stop-color="#0b0b0b"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="600" rx="44" fill="#f8fafc"/>
+  <ellipse cx="450" cy="515" rx="210" ry="34" fill="rgba(0,0,0,0.18)"/>
+  <g transform="translate(175,110)">
+    <path d="M70 80 h410 l-34 245 h-342 z" fill="url(#body)" stroke="#121212" stroke-width="8"/>
+    <path d="M52 45 h454 l-16 54 h-422 z" fill="url(#lid)" stroke="#121212" stroke-width="8"/>
+    <path d="M95 103 h364" stroke="#555" stroke-width="8" opacity=".28"/>
+    <path d="M85 134 h364" stroke="#555" stroke-width="8" opacity=".22"/>
+    <path d="M78 166 h364" stroke="#555" stroke-width="8" opacity=".16"/>
+    <rect x="138" y="163" width="200" height="72" rx="10" fill="none"/>
+    <text x="240" y="215" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="58" font-weight="700" fill="#f2f2f2">HDX</text>
+    <text x="0" y="40" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700" fill="#111827" opacity=".9">27 GAL</text>
+  </g>
+  <g transform="translate(110,420)">
+    <rect x="0" y="0" width="680" height="110" rx="28" fill="#0f172a"/>
+    <text x="340" y="44" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" fill="#f8fafc">MOVING TOTE</text>
+    <text x="340" y="78" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#ffd21f">Brand illustration for 27 Gallon</text>
+  </g>
+</svg>

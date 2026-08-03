@@ -1,10 +1,10 @@
 import './globals.css';
 import { CartProvider } from '@/components/CartProvider';
-import { NavBar } from '@/components/NavBar';
+import { TopBar } from '@/components/TopBar';
 
 export const metadata = {
-  title: 'Moving Tote Orders',
-  description: 'Order moving totes with owner admin controls powered by Supabase and Render.'
+  title: 'Load A Tote Moving Solutions',
+  description: 'Order moving totes, manage owner controls, and track bills of sale.'
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -12,7 +12,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
       <body>
         <CartProvider>
-          <NavBar />
+          <TopBar />
           <main className="mx-auto max-w-7xl px-4 py-8">{children}</main>
         </CartProvider>
       </body>

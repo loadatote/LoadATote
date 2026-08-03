@@ -4,7 +4,7 @@ import React, { createContext, useContext, useEffect, useMemo, useState } from '
 import { clearCart, loadCart, saveCart } from '@/lib/cart';
 import { CartItem } from '@/lib/types';
 
-type CartContextValue = {
+type CartCtx = {
   items: CartItem[];
   addItem: (productId: string) => void;
   removeItem: (productId: string) => void;
@@ -13,28 +13,29 @@ type CartContextValue = {
   count: number;
 };
 
-const CartContext = createContext<CartContextValue | null>(null);
+const CartContext = createContext<CartCtx | null>(null);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
+  const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
     setItems(loadCart());
+    setHydrated(true);
   }, []);
 
   useEffect(() => {
+    if (!hydrated) return;
     saveCart(items);
-  }, [items]);
+  }, [items, hydrated]);
 
-  const value = useMemo<CartContextValue>(() => ({
+  const value = useMemo<CartCtx>(() => ({
     items,
     addItem(productId) {
       setItems((current) => {
         const existing = current.find((item) => item.productId === productId);
         if (existing) {
-          return current.map((item) =>
-            item.productId === productId ? { ...item, quantity: item.quantity + 1 } : item
-          );
+          return current.map((item) => item.productId === productId ? { ...item, quantity: item.quantity + 1 } : item);
         }
         return [...current, { productId, quantity: 1 }];
       });
@@ -45,7 +46,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     setQuantity(productId, quantity) {
       setItems((current) =>
         current
-          .map((item) => (item.productId === productId ? { ...item, quantity } : item))
+          .map((item) => item.productId === productId ? { ...item, quantity } : item)
           .filter((item) => item.quantity > 0)
       );
     },

@@ -1,13 +1,12 @@
 import { CartItem } from './types';
 
-const KEY = 'moving-tote-cart';
+const KEY = 'load-a-tote-cart';
 
 export function loadCart(): CartItem[] {
   if (typeof window === 'undefined') return [];
-  const raw = window.localStorage.getItem(KEY);
-  if (!raw) return [];
   try {
-    return JSON.parse(raw) as CartItem[];
+    const raw = window.localStorage.getItem(KEY);
+    return raw ? (JSON.parse(raw) as CartItem[]) : [];
   } catch {
     return [];
   }

@@ -1,12 +1,11 @@
 import { createClient } from '@supabase/supabase-js';
-import { ownerEmailList } from './owner';
 
-export function getServiceClient() {
+export function getSupabaseServerClient() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const service = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
   if (!url || !service) {
-    throw new Error('Missing NEXT_PUBLIC_SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY');
+    throw new Error('Missing Supabase server env vars');
   }
 
   return createClient(url, service, {
@@ -15,8 +14,4 @@ export function getServiceClient() {
       persistSession: false
     }
   });
-}
-
-export function ownerEmails() {
-  return ownerEmailList();
 }
