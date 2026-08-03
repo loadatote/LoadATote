@@ -41,19 +41,33 @@ export default function HomePage() {
   const [catalog, setCatalog] = useState<ToteProduct[]>(fallbackProducts);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const supabase = getSupabaseBrowserClient();
-    supabase
-      .from('products')
-      .select('*')
-      .order('size', { ascending: true })
-      .then(({ data }) => {
-        if (data && data.length) {
-          setCatalog((data as ProductRow[]).map(toProduct));
-        }
-      })
-      .finally(() => setLoading(false));
-  }, []);
+ useEffect(() => {
+  const supabase = getSupabaseBrowserClient();
+  let cancelled = false;
+
+  async function loadCatalog() {
+    try {
+      const { data } = await supabase
+        .from('products')
+        .select('*')
+        .order('size', { ascending: true });
+
+      if (!cancelled && data && data.length) {
+        setCatalog((data as ProductRow[]).map(toProduct));
+      }
+    } finally {
+      if (!cancelled) {
+        setLoading(false);
+      }
+    }
+  }
+
+  loadCatalog();
+
+  return () => {
+    cancelled = true;
+  };
+}, []);
 
   const available = useMemo(() => catalog.filter((product) => !product.isOutOfStock), [catalog]);
 
