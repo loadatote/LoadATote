@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
+import { ownerEmailsFromEnv } from './owner';
 
 export function getSupabaseServerClient() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -15,3 +16,6 @@ export function getSupabaseServerClient() {
     }
   });
 }
+
+export const getServiceClient = getSupabaseServerClient;
+export const ownerEmails = ownerEmailsFromEnv;
