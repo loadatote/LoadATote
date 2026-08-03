@@ -12,7 +12,7 @@ export function PriceTable({
   rentalWindow: PricingWindow;
   onChange: (window: PricingWindow) => void;
 }) {
-  const options: PricingWindow[] = ['1d', '3d', '7d', '14d', '30d', '60d'];
+  const options: PricingWindow[] = ['1d', '7d', '14d', '30d', '60d'];
 
   return (
     <div className="rounded-3xl border bg-white p-4 shadow-soft">
