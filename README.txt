@@ -1,3 +1,3 @@
-Replace your project's lib/types.ts with this file.
-This adds the missing OrderRecord export used by app/admin/page.tsx.
-Then commit and push to GitHub.
+Replace components/OwnerTabs.tsx in your repo with this file.
+This removes the clsx dependency that is failing the Render build.
+After replacing, commit and push to GitHub and let Render rebuild.

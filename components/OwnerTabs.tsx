@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import clsx from 'clsx';
 
 const tabs = [
   { href: '/owner', label: 'Dashboard' },
@@ -20,15 +19,13 @@ export function OwnerTabs() {
       <div className="grid grid-cols-2 gap-3 md:grid-cols-5">
         {tabs.map((tab) => {
           const active = pathname === tab.href;
+          const className = [
+            'rounded-2xl px-6 py-4 text-center text-lg font-semibold transition',
+            active ? 'bg-amber-400 text-black' : 'bg-white/5 text-white hover:bg-white/10'
+          ].join(' ');
+
           return (
-            <Link
-              key={tab.href}
-              href={tab.href}
-              className={clsx(
-                'rounded-2xl px-6 py-4 text-center text-lg font-semibold transition',
-                active ? 'bg-amber-400 text-black' : 'bg-white/5 text-white hover:bg-white/10'
-              )}
-            >
+            <Link key={tab.href} href={tab.href} className={className}>
               {tab.label}
             </Link>
           );
