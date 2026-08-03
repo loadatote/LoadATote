@@ -1,17 +1,31 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { getSupabaseBrowserClient } from '@/lib/supabaseBrowser';
+import { ownerEmailsFromEnv } from '@/lib/owner';
 
 export function AuthPanel() {
   const supabase = getSupabaseBrowserClient();
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
 
   async function signIn() {
     const { error } = await supabase.auth.signInWithPassword({ email, password });
-    setMessage(error ? error.message : 'Signed in.');
+
+    if (error) {
+      setMessage(error.message);
+      return;
+    }
+
+    const isOwner = ownerEmailsFromEnv().includes(email.trim().toLowerCase());
+    setMessage(isOwner ? 'Owner signed in.' : 'Signed in.');
+
+    if (isOwner) {
+      router.push('/owner');
+    }
   }
 
   async function signUp() {

@@ -3,15 +3,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { usePathname, useRouter } from 'next/navigation';
 import { getSupabaseBrowserClient } from '@/lib/supabaseBrowser';
 import { ownerEmailsFromEnv } from '@/lib/owner';
 import { useCart } from './CartProvider';
 
 export function TopBar() {
   const { count } = useCart();
-  const pathname = usePathname();
-  const router = useRouter();
   const [owner, setOwner] = useState(false);
 
   useEffect(() => {
@@ -21,26 +18,18 @@ export function TopBar() {
       const email = data.session?.user.email?.toLowerCase() || '';
       const isOwner = ownerEmailsFromEnv().includes(email);
       setOwner(isOwner);
-
-      if (isOwner && (pathname === '/' || pathname === '/login' || pathname === '/products')) {
-        router.replace('/owner');
-      }
     });
 
     const { data: listener } = supabase.auth.onAuthStateChange(async (_, session) => {
       const email = session?.user.email?.toLowerCase() || '';
       const isOwner = ownerEmailsFromEnv().includes(email);
       setOwner(isOwner);
-
-      if (isOwner && (pathname === '/' || pathname === '/login' || pathname === '/products')) {
-        router.replace('/owner');
-      }
     });
 
     return () => {
       listener.subscription.unsubscribe();
     };
-  }, [pathname, router]);
+  }, []);
 
   return (
     <header className="sticky top-0 z-40 border-b border-white/10 bg-black/80 backdrop-blur">
