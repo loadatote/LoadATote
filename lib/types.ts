@@ -12,6 +12,7 @@ export type ToteProduct = {
   description: string;
   image: string;
   daily: number;
+  threeDay: number;
   sevenDay: number;
   fourteenDay: number;
   thirtyDay: number;
